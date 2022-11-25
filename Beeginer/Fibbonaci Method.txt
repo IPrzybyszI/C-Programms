@@ -1,0 +1,17 @@
+        //Fib(int Number) | This method is for showing value of specific element of Fibbonaci sequence |Example:If number is ,,3" it will show third number from Fibbonaci sequence 
+        // Example of using in main or method: Console.WriteLine(Fib(4));
+        static int Fib(int Number)
+        {
+            if (Number == 0)
+            {
+                return 0;
+            }
+            else if (Number == 1)
+            {
+                return 1;
+            }
+            else
+            {
+                return Fib(Number - 1) + Fib(Number - 2);
+            }
+        }
