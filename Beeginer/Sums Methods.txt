@@ -1,0 +1,43 @@
+        //sum(int Number) |This method returns sum of 2 elements | Example: if Numbers are 4 and 2 it will return ,,6", because 4+2 is 6
+        //Example of using in main or method
+        //Console.WriteLine(sum(4,2));
+        static int sum(int Number, int Number2)
+        {
+            return Number + Number2;
+        }
+
+        //sum(int[] Number) |This method returns sum of elements from array | Example: if array is filled with numbers from 0 to 9, then method will return ,,45", because 45=0+1+2.....+8+9
+        //Example of using in main or method
+        //int[] array = new int[10];
+        //    for(int i=0;i<array.Length;i++)
+        //    {
+        //        array[i] = i;
+        //    }
+        //Console.WriteLine(sum(array));
+        static int sum(int[] Number)
+        {
+            int _sum=0;
+            for (int i = 0; i < Number.Length; i++)
+            {
+                _sum = _sum + Number[i];
+            }
+            return _sum;
+        }
+        //sum(int[,] Number) |This method returns sum of elements from 2D array | Example: if array is filled with numbers { { 1, 2,3 }, { 3, 4,3 }} it will return: 16
+        //Example of using in main or method
+        //int[,] array = new int[2, 3] { { 1, 2, 3 }, { 3, 4, 3 } };
+        //Console.WriteLine(sum(array));
+
+        static int sum(int[,] Number)
+        {
+            int _sum = 0;
+            for (int i = 0; i < Number.GetLength(0); i++)
+            {
+                for(int j=0;j<Number.GetLength(1);j++)
+                {
+                    _sum = _sum + Number[i,j];
+
+                }
+            }
+            return _sum;
+        }
