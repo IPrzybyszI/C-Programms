@@ -1,4 +1,4 @@
-        //Fib(int Number) | This method is for showing value of specific element of Fibbonaci sequence |Example:If number is ,,3" it will show third number from Fibbonaci sequence 
+        //Fib(int Number) | TThis method returns value of specific element from Fibbonaci sequence |Example:If number is ,,3" it will show value of third element in Fibbonaci sequence
         // Example of using in main or method: Console.WriteLine(Fib(4));
         static int Fib(int Number)
         {
@@ -16,7 +16,7 @@
             }
         }
 
-        //Fib(int[] Number) | This method return array filled with values from Fibbonaci sequence |Example:If array has length of 10. It will return array filled with 10 values from Fibbonaci sequence
+        //Fib(int[] Number) | This method returns array filled with values from Fibbonaci sequence elements |Example:If array has length of 10. It will return array filled with 10 values from Fibbonaci sequence
         //Example of using in main or method:
         //    int[] array = new int[10];
         //    Fib(array);
