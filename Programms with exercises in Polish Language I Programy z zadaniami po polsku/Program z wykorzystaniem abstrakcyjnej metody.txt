@@ -1,0 +1,191 @@
+//Zawiera pola: prędkość, paliwo i drzwi oraz metody
+//abstrakcyjne Jadę oraz Naczepa, a także trzy metody wirtualne Paliwo (wyświetla rodzaj
+//paliwa), Drzwi(wyświetla podaną liczbę drzwi) i Koła(wyświetla liczbę kół). Klasy
+//Ciezarówka i Osobowka są klasami pochodnymi klasy Samochod. W każdej z nich należy
+//przesłonić metody wirtualne (Jadę może wyświetlać napis „Jestem ciężarówką/osobówką i
+//jadę z prędkością:…; Naczepa – „Jestem ciężarówką/osobówką i nie/mam naczepę/y).
+//Należy także w każdej z tych klas przesłonić jedną metodę wirtualną. Klasa Hybryda
+//dziedziczy po klasie Osobowka. Należy przesłonić w niej wszystkie dostępne metody.
+//Napisać program wywołujący.
+
+
+using System;
+
+
+namespace _25._11._2022
+{
+    public abstract class Samochod
+    {
+        double predkosc
+        {
+            get;
+            set;
+        }
+        string paliwo
+        {
+            get;
+            set;
+        }
+        string drzwi
+        {
+            get;
+            set;
+        }
+        public abstract void Jade();
+        public abstract void Naczepa();
+
+        public virtual void Paliwo()
+        {
+            Console.WriteLine("Jezdze na dieslu");
+        }
+        public virtual void Drzwi(int drzwi)
+        {
+            Console.WriteLine("Nie mam drzwi");
+        }
+
+        public virtual void Kola(int kola)
+        {
+            Console.WriteLine("Po co mi kola?");
+        }
+    }
+
+    public class Ciezarowka : Samochod
+    {
+        private double _predkosc;
+        private string _paliwo;
+        private string _drzwi;
+
+        double predkosc
+        {
+            get => _predkosc;
+            set => predkosc = value;
+        }
+        string paliwo
+        {
+            get => _paliwo;
+            set => _paliwo = value;
+        }
+        string drzwi
+        {
+            get => _drzwi;
+            set => _drzwi = value;
+        }
+        public override void Jade()
+        {
+            Console.WriteLine("„Jestem ciężarówką i jadę z prędkością:" + _predkosc);
+        }
+        public override void Naczepa()
+        {
+            Console.WriteLine("Jestem ciężarówką i mam naczepę");
+        }
+        public override void Paliwo()
+        {
+            Console.WriteLine("Jade na paliwie:" + _paliwo);
+        }
+        public override void Drzwi(int drzwi)
+        {
+
+            Console.WriteLine("Mam:" + drzwi + "Drzwi");
+        }
+        public override void Kola(int kola)
+        {
+
+            Console.WriteLine("Mam:" + kola + "kol");
+        }
+
+    }
+    public class Osobowka : Samochod
+    {
+        public double _predkosc;
+        public string _paliwo;
+        public string _drzwi;
+
+        double predkosc
+        {
+            get => _predkosc;
+            set => predkosc = value;
+        }
+        string paliwo
+        {
+            get => _paliwo;
+            set => _paliwo = value;
+        }
+        string drzwi
+        {
+            get => _drzwi;
+            set => _drzwi = value;
+        }
+        public override void Jade()
+        {
+            Console.WriteLine("„Jestem osobowką i jadę z prędkością:" + _predkosc);
+        }
+        public override void Naczepa()
+        {
+            Console.WriteLine("Jestem osobowka i nie mam naczepy");
+        }
+        public override void Paliwo()
+        {
+            Console.WriteLine("Jade na paliwie: " + _paliwo);
+        }
+        public override void Drzwi(int drzwi)
+        {
+
+            Console.WriteLine("Mam: " + drzwi + " Drzwi");
+        }
+        public override void Kola(int kola)
+        {
+
+            Console.WriteLine("Mam:" + kola + "kol");
+        }
+
+    }
+
+    public sealed class Hybryda : Osobowka
+    {
+        public sealed override void Jade()
+        {
+            Console.WriteLine("„Jestem hybrydą i jadę z prędkością:" + _predkosc);
+        }
+        public override void Naczepa()
+        {
+            Console.WriteLine("Jestem hybrydą i nie mam naczepy");
+        }
+        public override void Paliwo()
+        {
+            Console.WriteLine("Jade na paliwie:" + _paliwo);
+        }
+        public override void Drzwi(int drzwi)
+        {
+
+            Console.WriteLine("Mam: " + drzwi + " Drzwi");
+        }
+        public override void Kola(int kola)
+        {
+
+            Console.WriteLine("Mam: " + kola + " kół");
+        }
+    }
+
+
+
+
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Ciezarowka Volvo = new Ciezarowka();
+            Osobowka Audi = new Osobowka();
+            Hybryda Ekology = new Hybryda();
+
+            Volvo.Kola(50);
+            Volvo.Drzwi(4);
+            Ekology._paliwo = "Eko-95";
+            Ekology.Kola(6);
+            Ekology.Drzwi(3);
+            Ekology.Paliwo();
+
+
+        }
+    }
+
+}
