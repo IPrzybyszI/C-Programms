@@ -1,0 +1,114 @@
+using System;
+
+//Proszę stworzyć program zawierający klasę Samochod implementującą dwa
+//interfejsy. Pierwszy interfejs ma zawiera właściwość Marka oraz metodę Jade
+//(wyświetla napis „Samochód jest w ruchu”). Drugi interfejs zawiera dwie
+//właściwości: Model i Rok oraz metodę Stoje (wyświetlającą napis „Samochód
+//stoi”). Dodatkowo klasa powinna zawierać metodę wyświetlającą markę, model i
+//rok produkcji samochodu. Należy napisać program wywołujący.
+
+namespace ConsoleApp1
+{
+    public interface Interfejswlasciwy
+    {
+        string Marka
+        {
+            get;
+            set;
+        }
+        public void Jade();
+
+    }
+    public interface samochodyrozw1
+    {
+        string Model
+        {
+            get;
+            set;
+        }
+        string Rok
+        {
+            get;
+            set;
+        }
+        public void Stoje();
+    }
+
+    class samochod : samochodyrozw1, Interfejswlasciwy
+    {
+        private string _Marka = "Brak";
+        private string _Model = "Brak";
+        private string _Rok = "Brak";
+        public string Marka
+        {
+            get => _Marka;
+            set => _Marka = value;
+        }
+        public string Model
+        {
+            get => _Model;
+            set => _Model = value;
+        }
+        public string Rok
+        {
+            get => _Rok;
+            set => _Rok = value;
+        }
+
+
+
+        public void Jade()
+        {
+            Console.WriteLine("Samochód jest w ruchu");
+        }
+        public void Stoje()
+        {
+            Console.WriteLine("Samochod stoi");
+        }
+        public void Wyswietlsamochod()
+        {
+            Console.WriteLine("Marka auta: " + _Marka + " " + "Model auta: " + _Model + " " + "Rok produkcji: " + _Rok);
+        }
+
+
+
+
+    }
+
+
+
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            samochod audi = new samochod();
+            Console.WriteLine("Podaj marke samochodu");
+
+            audi.Marka = System.Console.ReadLine();
+            while (audi.Marka == "")
+            {
+                Console.WriteLine("Nic nie wpisales. Podaj dane ponownie");
+                audi.Marka = System.Console.ReadLine();
+            }
+
+            Console.WriteLine("Podaj model samochodu");
+            audi.Model = System.Console.ReadLine();
+            while (audi.Model == "")
+            {
+                Console.WriteLine("Nic nie wpisales. Podaj dane ponownie");
+                audi.Model = System.Console.ReadLine();
+            }
+            Console.WriteLine("Podaj rok samochodu");
+            audi.Rok = System.Console.ReadLine();
+            while (audi.Rok == "")
+            {
+                Console.WriteLine("Nic nie wpisales. Podaj dane ponownie");
+                audi.Rok = System.Console.ReadLine();
+            }
+
+            audi.Wyswietlsamochod();
+
+        }
+    }
+}
