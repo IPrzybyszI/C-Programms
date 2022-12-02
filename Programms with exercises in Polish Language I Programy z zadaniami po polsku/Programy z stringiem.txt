@@ -1,0 +1,316 @@
+
+1
+            Console.WriteLine("Podaj Imie, Nazwisko i Wynagrodzenie");
+            string a = Console.ReadLine();
+            string b = Console.ReadLine();
+            string c = Console.ReadLine();
+            Console.Write(a + "\n" + b + "\n" + c);
+2a
+            Console.WriteLine("Wprowadz napis");
+            int a = 0;
+            string napis = Console.ReadLine();
+            napis = napis.ToLower(); //bez tego tez zadziala 
+            for (int i = 0; i < napis.Length; i++)
+            {
+                if (napis[i] == 'e' || napis[i] == 'E')
+                {
+                    a++;
+                }
+            }
+            Console.WriteLine(napis);
+            Console.WriteLine("Tyle razy pojawiła się litera e --> " + a);
+2b
+            Console.WriteLine("Wprowadz napis");
+            int a = 0;
+            string napis = Console.ReadLine();
+            a = a.ToLower();
+            foreach (char e in napis)
+            {
+                if (e == 'e')
+{ 
+a++; 
+}
+
+
+            }
+            Console.WriteLine("Tyle razy pojawiła się litera e --> " + a);
+
+3.
+	            Console.WriteLine("Wprowadz napis");
+            string napis = Console.ReadLine();
+            string kopia = "";
+            napis = napis.ToLower();
+            for (int i = 0; i < napis.Length; i++)
+            {
+                kopia += napis[napis.Length - i - 1];
+            }
+            if (kopia == napis)
+            {
+                Console.WriteLine("Jest to palindrom");
+
+            }
+            else
+            {
+                Console.WriteLine("Nie jest to palindrom");
+            }
+
+
+4.
+            Console.WriteLine("Wprowadz haslo które będzie posiadało; \nJedną Cyfre\n Musi zawierać jeden ze znaków: #,$,% \n Musi mieć conajmniej 8 znaków\nMusi zawierać przynajmniej jedną dużą litere");
+            string haslo = Console.ReadLine();
+            string kopia = "";
+            int b = 0;
+            if (haslo.Length >= 8)
+            {
+                if (haslo != haslo.ToLower())
+                {
+                    if (haslo.IndexOf('#') >= 0 || haslo.IndexOf('$') >= 0 || haslo.IndexOf('%') >= 0)
+                    {
+                        for (int i = 0; i < haslo.Length; i++)
+                        {
+                            kopia = Convert.ToString(haslo[i]);
+                            bool c = int.TryParse(kopia, out int a);
+                            b = b + a;
+                        }
+                        if (b > 0)
+                        {
+                            Console.WriteLine("Mocne hasło");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Slabe");
+                        }
+                    }
+                    else
+                    {
+                        Console.WriteLine("słabe");
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("słabe");
+                }
+            }
+            else
+            {
+                Console.WriteLine("słabe");
+            }
+
+
+5.
+            Console.WriteLine("Podaj date");
+            string slowo = Console.ReadLine();
+            int wynik = 0;
+            string kopia = "";
+            for (int i = 0; i < slowo.Length; i++)
+            {
+                kopia = Convert.ToString(slowo[i]);
+                bool b = Int32.TryParse(kopia, out int a);
+                if (b)
+                {
+                    wynik += a;
+                }
+;
+            }
+            Console.WriteLine("Wynik dodawania = " + wynik);
+6.
+            Console.WriteLine("Podaj kod");
+            string kod = Console.ReadLine();
+            string kopia = "";
+            if (kod.Length == 13)
+            {
+                for (int i = 0; i != 3; i++)
+                {
+                    kopia = kopia + kod[i];
+                }
+                if (kopia == "590")
+                {
+                    Console.WriteLine("Wyprodukowano w Polsce");
+                }
+                else
+                {
+                    Console.WriteLine("Nie wyprodukowano w Polsce");
+                }
+;
+            }
+            else
+            {
+                Console.WriteLine("Kod nie jest prawidlowy");
+            }
+7.
+            Console.WriteLine("Podaj date w formacie DD-MM-RRRR");
+            string data = Console.ReadLine();
+            string kopia = "";
+            for (int i = 3; i < 5; i++)
+            {
+                kopia = kopia + data[i];
+
+            }
+            Console.WriteLine("Miesiąc : " + kopia);
+            switch (kopia)
+            {
+                case "01":
+                    Console.WriteLine("Styczneń");
+                    break;
+                case "02":
+                    Console.WriteLine("Luty");
+                    break;
+                case "03":
+                    Console.WriteLine("Marzec");
+                    break;
+                case "04":
+                    Console.WriteLine("Kwiecień");
+                    break;
+                case "05":
+                    Console.WriteLine("Maj");
+                    break;
+                case "06":
+                    Console.WriteLine("Czerwiec");
+                    break;
+                case "07":
+                    Console.WriteLine("Lipiec");
+                    break;
+                case "08":
+                    Console.WriteLine("Sierpień");
+                    break;
+                case "09":
+                    Console.WriteLine("Wrzesień");
+                    break;
+                case "10":
+                    Console.WriteLine("Pazdziernik");
+                    break;
+                case "11":
+                    Console.WriteLine("Listopad");
+                    break;
+                case "12":
+                    Console.WriteLine("Grudzień");
+                    break;
+                default:
+                    Console.WriteLine("Coś zostało wprowadzone źle");
+                    break;
+8.
+            Console.WriteLine("Podaj zdanie");
+            string a = Console.ReadLine();
+            int A = 0;
+            int e = 0;
+            int a8 = 0;
+            for (int i = 0; i < a.Length; i++)
+            {
+                if (a[i] == 'A')
+                {
+                    A++;
+                }
+                if (a[i] == 'e')
+                {
+                    e++;
+                }
+                if (a[i] == '8')
+                {
+                    a8++;
+                }
+            }
+            Console.WriteLine("A = " + A +"\ne = " + e +"\n8 = " + a8);
+
+
+LUB
+
+        static int suma(string tekst, char znak)
+        {
+            int wynik = 0;
+            for(int i=0; i<tekst.Length; i++)
+            {
+                if(tekst[i]==znak)
+                {
+                    wynik++;
+                }
+                else
+                {
+
+                }
+            }
+
+            return wynik;
+        }
+        static void Main(string[] args)
+        {
+            string tekst = "Ala ma 8 Kotow";
+            tekst = tekst.ToLower();
+            int wynik1=suma(tekst,'a');
+            int wynik2=suma(tekst,'8');
+            int wynik3 = suma(tekst, 'k');
+            Console.WriteLine("A-" + wynik1);
+            Console.WriteLine("8-" + wynik2);
+            Console.WriteLine("K-" + wynik3);
+
+
+
+
+
+        }
+9.
+            string słowo = "ID/Maksymilian Kolbe /69/542p.n.e";
+            string[] tablica = słowo.Split("/");
+            string a = tablica[1];
+            string[] tablica2 = a.Split(" ");
+            string b = tablica2[1];
+            Console.WriteLine(b);
+
+
+
+
+
+
+
+
+
+
+-----------------------------
+Zadania
+
+1. Pobierz od użytkownika 3 zmienne - imię, nazwisko, wynagrodzenie - a następnie wyświetl je w trzech liniach, za pomocą jednej instrukcji WriteLine(), wykorzystując poznane sposoby formatowania tekstów.
+
+2. Pobierz od użytkownika dowolny napis i oblicz, ile razy występuje w nim litera 'e'. Wykonaj zadanie w dwóch wariantach:
+
+a) z wykorzystaniem pętli for
+b) z wykorzystaniem pętli foreach
+
+3. Pobierz od użytkownika wyraz i sprawdź, czy jest on palindromem (czytany od przodu brzmi tak samo, jak czytany wstecz).
+
+Wskazówka:
+W pierwszym kroku zadbaj o to, by wszystkie litery w wyrazie zostały zamienione na duże. Pozwoli to uniknąć błędnej interpretacji, np. dla słowa "Ala", czy "Kajak".
+
+4. Wyobraź sobie, że tworzysz system, w którym użytkownicy mogą zakładać konta. Napisz kod, który sprawdzi, czy wprowadzony przez użytkownika ciąg znaków może być hasłem spełniającym podane poniżej kryteria:
+- musi zawierać przynajmniej jedną cyfrę (wykorzystaj metodę TryParse())
+- musi zawierać jeden ze znaków: #, $, % (wykorzystaj metodę IndexOf())
+- musi mieć długość przynajmniej 8 znaków
+- musi zawierać przynajmniej jedną dużą literę (wykorzystaj kody z tablicy kodów ASCII)
+
+5. Napisz program, który sumuje wszystkie cyfry pojawiające się w tekście podanym przez użytkownika.
+
+Przykładowe wejście:
+"Urodziłem się 30 lipca 2001 roku."
+
+Wyjście:
+6
+
+Wskazówka:
+Wykorzystaj metodę TryParse() oraz fakt, że zmienną tekstową można traktować jak tablicę znaków.
+
+6. Napisz program, który sprawdzi, czy towar posiadający 13-cyfrowy kod kreskowy EAN-13, wprowadzony przez użytkownika, został wyprodukowany w Polsce lub jest dystrybuowany przez polskie przedsiębiorstwo. Kody takich towarów rozpoczynają się od cyfr 590.
+
+7. Napisz program, który z daty zapisanej w formacie DD-MM-RRRR pobierze numer miesiąca i wyświetli słownie jego nazwę.
+
+8. Napisz program, w którym stworzysz tablicę znaków (lub tekst, gdyż jak Ci już wiadomo - teksty są odpowiednikiem tablic znaków) oraz tekst. Program ma wyświetlić informację o tym, ile razy poszczególne znaki występują w tekście.
+
+Przykładowe wejście:
+tablica={'A','e','8'}
+tekst="Ala ma 8 lat"
+
+Wyjście:
+A - 1
+e - 0
+8 - 1
+
+9. Firma X przydziela wszystkim swoim pracownikom identyfikatory w postaci: [ID/nazwisko dział/unikatowyNumer/rokZatrudnienia], np. [ID/Kowalski marketing/154/2012], [ID/Sosnowska kadry/12/2019].
+Napisz program, który z identyfikatora w takiej postaci wyciągnie i wyświetli dział zatrudnienia pracownika.
+
