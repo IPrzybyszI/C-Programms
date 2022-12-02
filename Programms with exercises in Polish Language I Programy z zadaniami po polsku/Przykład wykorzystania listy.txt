@@ -1,0 +1,107 @@
+using System;
+using System.Collections.Generic;
+using System.Threading;
+
+//Proszę stworzyć listę autorów książek. Do listy należy dodać 4 nazwiska autorów, a
+//następnie wyświetlić zawartość listy w jednej linii z przecinkami. Następnie powinna się
+//wyświetlać pojemność listy.
+
+//Dodatkowo program powinien realizować cztery następujące funkcje:
+
+//Sprawdzenia czy dane nazwisko jest na liście;
+
+//Dodawania dwóch nazwisk oraz pozycji na liście, gdzie mają się znaleźć (program prze
+//dodaniem do listy powinien sprawdzać czy dane nazwisko już na niej jest);
+
+//Usuwanie nazwiska z listy (po uprzednim sprawdzeniu czy się na niej znajduje);
+
+//Całkowitego czyszczenia listy oraz w celu kontrolnym pokazania liczby elementów
+//listy.
+
+//Użytkownik powinien mieć możliwość wyboru właściwej funkcji. W programie powinny
+//znaleźć się odpowiednie komunikaty oraz powinna wyświetlać się zawartość tabeli
+public class Zadanie1
+{
+    public static void Main()
+    {
+        List<string> Autorzy = new List<string>();
+
+        Autorzy.Add("Szczesny");
+        Autorzy.Add("Mihalik");
+        Autorzy.Add("Milik");
+        Autorzy.Add("Kochanowski");
+        string odpowiedz;
+        string odpowiedzcase;
+
+        Console.WriteLine("Witaj w programie z lista autorow");
+        Thread.Sleep(2000);
+
+        do
+        {
+            Console.Clear();
+            DateTime dat = DateTime.Now;
+            Console.WriteLine("Czas: {0:d} Godzina {0:t}", dat);
+            Console.WriteLine("Twoje opcje x ->Wyjscie; + ->Dodanie autora; - -> usun autora; ? -> Wyszukaj autora; Lista -> Wyswietlenie listy autorow; Wyczysc -> Czysci liste");
+
+            switch (odpowiedzcase = Console.ReadLine())
+            {
+                case "+":
+                    Console.WriteLine("Dodaj autora");
+                    Console.Write("1.");
+                    Autorzy.Add(Console.ReadLine());
+                    Console.WriteLine("Autor zostal pomyslnie dodany");
+
+                    break;
+                case "-":
+                    Console.WriteLine("Ktorego autora chcesz usunac? Wpisz jego nazwisko i usun");
+                    if (Autorzy.Contains(odpowiedz = Console.ReadLine()))
+                    {
+                        Autorzy.Remove(odpowiedz);
+                        Console.WriteLine("Pomyslnie usunieto");
+
+                    }
+                    else
+                    {
+                        Console.WriteLine("Niepomyślnie wykonano akcje usun " + odpowiedz + " Nie ma na liscie. ");
+                    }
+
+                    break;
+                case "?":
+                    Console.WriteLine("Wpisz autora, by sprawdzic czy jest na liscie");
+                    if (Autorzy.Contains(odpowiedz = Console.ReadLine()))
+                    {
+                        Console.WriteLine(odpowiedz + " jest na liscie");
+                    }
+                    else
+                    {
+                        Console.WriteLine(odpowiedz + " nie jest na liscie. autor zostanie dodany");
+                        Autorzy.Add(odpowiedz);
+                    }
+
+                    break;
+                case "Lista":
+                    int number = 0;
+                    foreach (string autor in Autorzy)
+                    {
+                        number++;
+                        Console.Write(number+". ");
+                        Console.WriteLine(autor);
+                        Thread.Sleep(200);
+                    }
+                    break;
+                case "Wyczysc":
+                    Autorzy.Clear();
+                    Console.WriteLine("Liste pozytywnie wyczyszczono");
+
+                    break;
+            }
+
+            Thread.Sleep(2500);
+
+        } while (odpowiedzcase !="x" && odpowiedzcase!="X");
+
+        Console.WriteLine("Dziekujemy za skorzystanie z naszego programu");
+
+
+    }
+}
