@@ -1,0 +1,83 @@
+using System;
+
+//Proszę stworzyć klasę Zwierze zawierającą pola gatunek oraz pożywienie oraz
+//metodę wyświetlającą gatunek zwierzęcia i co je. Należy stworzyć dwie klasy
+//dziedziczące od klasy Zwierze: Pies i Kot. Klasa Pies powinna zawierać rasę psa,
+//wydawany odgłos oraz metodę wyświetlającą te dwie wartości. Klasa Kot ma
+//zawierać kolor sierści oraz metodę wyświetlającą ten kolor. Należy napisać
+//program wywołujący tak, aby dla każdego zwierzęcia wyświetlała się informacja o
+//gatunku i pożywieniu.
+
+namespace ConsoleApp1
+{
+    public class Zwierze
+    {
+        string gatunek;
+        string pozywienie;
+        public Zwierze(string gatun, string poz)
+        {
+            gatunek = gatun;
+            pozywienie = poz;
+        }
+        public void wyswietl()
+        {
+            Console.WriteLine("Jest to:" + gatunek);
+            Console.WriteLine("Pozywia sie:" + pozywienie);
+        }
+    }
+    class Pies : Zwierze
+    {
+        string rasa;
+        string odglos;
+        public Pies(string gatun, string poz, string ra, string odgl) : base(gatun, poz)
+        {
+            rasa = ra;
+            odglos = odgl;
+        }
+        public void wyswietl2()
+        {
+            wyswietl();
+            Console.WriteLine("Jego rasa to:" + rasa);
+            Console.WriteLine("Jego odglos to:" + odglos);
+        }
+    }
+    class Kot : Zwierze
+    {
+        string kolor;
+        public Kot(string gatun, string poz, string kol) : base(gatun, poz)
+        {
+            kolor = kol;
+        }
+        public void wyswietl2()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            wyswietl();
+            Console.WriteLine("Jego kolor to:" + kolor);
+            Console.ResetColor();
+        }
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string gatunek1 = "Kot";
+            string pozywienie1 = "Mięso";
+            string kolor1 = "Zółty";
+            Kot sierciuszek = new Kot(gatunek1, pozywienie1, kolor1);
+            sierciuszek.wyswietl2();
+            Console.WriteLine();
+            string gatunek2 = "Pies";
+            string pozywienie2 = "Mięso";
+            string rasa2 = "Jamnik";
+            string odglos2 = "Hau Hau";
+            Pies Maksio = new Pies(gatunek2, pozywienie2, rasa2,odglos2);
+            Maksio.wyswietl2();
+
+
+
+
+
+        }
+    }
+}
