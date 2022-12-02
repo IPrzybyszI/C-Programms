@@ -1,0 +1,147 @@
+1.
+        static void Main(string[] args)
+        {
+            StreamReader sr = new StreamReader(@"C:\Users\konra\OneDrive\Pulpit\French Mail.txt");
+            string a = sr.ReadToEnd();
+            Console.WriteLine("Długość tego tekstu = " + a.Length);
+            double b = 0;
+            for (int i = 0; i < a.Length - 1; i++)
+            {
+                if (a[i] == 'a')
+                {
+                    b++;
+                }
+            }
+            Console.WriteLine("Liczba a w wyrazie = " + b);
+            Console.WriteLine("Procent występowania a w wyrazie = " + ((b / a.Length) * 100) + "%");
+        }
+2.
+        static void Met(int n, string sciezka)
+        {
+            using (StreamWriter sw = new StreamWriter(sciezka))
+                for (int i = 1; i <= n; i++)
+            {
+                for (int j = 1; j <= n; j++)
+                {
+                    sw.Write(i * j + "\t");
+                }
+                sw.WriteLine();
+            }
+
+        }
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Podaj wartosc n");
+            int n = int.Parse(Console.ReadLine());
+            Console.WriteLine("Podaj Nazwe ścieżki");
+            string sciezka = Console.ReadLine();
+            Met(n, sciezka);
+        }
+3.
+        {
+            StreamReader sr = new StreamReader(@"C:\Users\konra\OneDrive\Pulpit\zaj11_lizbona.txt");
+            string slowo = sr.ReadToEnd();
+            int suma = 0;
+            string robocza = "";
+            for (int i = 0; i < slowo.Length; i++)
+            {
+                robocza = Convert.ToString(slowo[i]);
+                if (int.TryParse(robocza, out int a))
+                {
+                    suma += a;
+                }
+            }
+            Console.WriteLine(suma);
+
+        }
+4.
+        {
+            using (StreamWriter sw = new StreamWriter(@"C:\Users\konra\OneDrive\Pulpit\Zadanie4.txt"))
+                for (int i = 1; i < 4; i++)
+                {
+                    Console.WriteLine("Podaj Tytuł");
+                    string tyt = Console.ReadLine();
+                    Console.WriteLine("Podaj liczbe stron");
+                    int a = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Podaj sygnature");
+                    string syg = Console.ReadLine();
+
+                    sw.WriteLine("Książka " + i);
+                    sw.WriteLine("Tytuł: " + tyt);
+                    sw.WriteLine("Liczba Stron: " + a);
+                    sw.WriteLine("Sygnatura: " + syg + " \n");
+
+                }
+
+        }
+5.
+using System;
+using System.IO;
+using System.Threading;
+
+
+            StreamReader sr = new StreamReader(@"C:\Users\konra\OneDrive\Pulpit\zaj11_test.txt");
+            string slowo = sr.ReadToEnd();
+            char[] separator = { '\n', '\t' };
+            string[] tab = new string[19];
+            tab = slowo.Split(separator);
+            int counter = 1;
+            int suma = 0;
+            for (int i = 0; i < tab.Length; i += 2)
+            {
+                Console.WriteLine("Pytanie nr." + (counter));
+                counter++;
+                Console.WriteLine("\n" + tab[i]);
+                Console.WriteLine("\nPodaj odpowiedź");
+                string odpowiedź = Console.ReadLine();
+                if (odpowiedź.ToLower() == tab[i+1].Trim().ToLower())
+                {
+                    suma++;
+                    Console.WriteLine("Odpowiedziałeś poprawnie");
+                }
+                else
+                {
+                    Console.WriteLine("Odpowiedziałeś jak ja na większości kolokwiów");
+                    Console.WriteLine("Poprawna odpowiedź to: " + tab[i]);
+                }
+                Thread.Sleep(2000);
+                Console.Clear();
+            }
+            Console.WriteLine("Suma pkt to = " + suma);
+
+
+
+-----------------------------
+Zadania
+
+1. Napisz program, który (wykorzystując metodę ReadLine z klasy StreamReader) czyta plik tekstowy i wyświetla informacje o tym:
+- ile znaków jest w tym pliku,
+- ile razy w tym pliku występuję litera 'a' i jaki jest to procent wszystkich znaków.
+
+2. Napisz program z metodą statyczną, która zapisuje do nowego pliku tekstowego tabliczkę mnożenia o podanym przez użytkownika wymiarze (ścieżka do pliku i wymiar tabliczki są argumentami metody).
+
+3. Napisz program, który liczy i wyświetla sumę wszystkich cyfr z pliku zaj11_lizbona.txt (prawidłowy wynik to 117).
+
+4. Napisz program, w którym użytkownik jest proszony o wprowadzanie danych na temat trzech książek: tytułu, liczny stron i sygnatury. Dane są zapisywane do pliku tekstowego. Struktura utworzonego pliku ma być następująca:
+
+Działanie programu rozpoczęto: (data i czas)
+
+KSIĄŻKA 1
+Tytuł: "XYZ" 
+Liczba stron: 148
+Syngatura: XYZ_205_61_Z
+
+KSIĄŻKA 2
+Tytuł: "ABC" 
+Liczba stron: 250
+Syngatura: ABC_5_111_UCV
+
+KSIĄŻKA 3
+Tytuł: "RST" 
+Liczba stron: 152
+Syngatura: RST_200_061_ADZ
+
+Działanie programu zakończono: (data i czas)
+
+5. Plik zaj11_test.txt zawiera oddzielone znakiem tabulacji pytania i prawidłowe odpowiedzi na nie. Napisz program, który zadaje użytkownikowi wszystkie pytania z pliku i - jeśli ten udzieli poprawnej odpowiedzi - dodaje punkt. Na podstawie wprowadzanych odpowiedzi do nowego pliku tekstowego ma zostać zapisany raport zawierający informacje: na które pytania użytkownik odpowiedział błędnie i ile zdobył punktów.
+
