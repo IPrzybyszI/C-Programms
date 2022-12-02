@@ -1,0 +1,49 @@
+using System;
+
+
+namespace ConsoleApp1
+{
+    public interface Interfejsnowy
+    {
+        public void WyswietlDane();
+        public double Policzaa();
+    }
+
+    class wykorzystanie : Interfejsnowy
+    {
+        int a;
+        int b;
+        public wykorzystanie(int ana, int bab)
+        {
+            a = ana;
+            b = bab;
+        }
+        public double Policzaa()
+        {
+            return a * b;
+        }
+        public void WyswietlDane()
+        {
+            Console.WriteLine("To jest przyklad implementacji interfejsu");
+            Console.WriteLine("a=" + a + "  b=" + b);
+            Console.WriteLine("Wynik a*b wynosi:" + Policzaa());
+        }
+
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Jest to przykladowy prosty program z wykorzystaniem interfeujsu na iloczyn a*b");
+            Console.WriteLine("Podaj a");
+            int a = int.Parse(Console.ReadLine());
+            Console.WriteLine("Podaj b");
+            int b = int.Parse(Console.ReadLine());
+            wykorzystanie Nowy = new wykorzystanie(a,b);
+            Nowy.WyswietlDane();
+
+
+        }
+    }
+}
