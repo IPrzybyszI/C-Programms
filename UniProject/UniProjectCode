@@ -1,0 +1,148 @@
+#include <string>
+#include <fstream>
+#include <vector>
+
+using namespace std;
+
+struct wynik {
+    string czas;
+    string maraton;
+    string data;
+};
+
+struct zawodnik {
+    std::string nazwisko;
+    std::vector<wynik> wyniki;
+};
+
+int szukajZawodnika(std::string nazwisko, std::vector<zawodnik>& zawodnicy) {
+    for (int i = 0; i < zawodnicy.size(); i++) {
+        if (zawodnicy[i].nazwisko.compare(nazwisko) == 0) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+std::vector<zawodnik> czytajWyniki(std::vector<std::string> pliki) {
+    std::vector<zawodnik> zawodnicy;
+    for (int i = 0; i < pliki.size(); i++) {
+        std::ifstream plik;
+        plik.open(pliki[i]);
+
+        if (plik) {
+            std::string nazwaMaratonu, dataMaratonu;
+
+            std::getline(plik, nazwaMaratonu);
+            std::getline(plik, dataMaratonu);
+
+            std::string pozycjaNaMecie;
+            std::string nazwiskoZawodnika;
+            std::string numerZawodnika;
+            std::string czas;
+
+            while (!plik.eof()) {
+                std::getline(plik, pozycjaNaMecie, ',');
+                std::getline(plik, nazwiskoZawodnika, ',');
+                std::getline(plik, numerZawodnika, ',');
+                std::getline(plik, czas, '\n');
+
+                nazwiskoZawodnika = nazwiskoZawodnika.substr(1);
+
+                int indeksZawodnika = szukajZawodnika(nazwiskoZawodnika, zawodnicy);
+                if (indeksZawodnika == -1) {
+                    zawodnik nowyZawodnik;
+                    nowyZawodnik.nazwisko = nazwiskoZawodnika;
+
+                    zawodnicy.push_back(nowyZawodnik);
+                    indeksZawodnika = zawodnicy.size() - 1;
+                }
+
+                wynik wynik;
+                wynik.maraton = nazwaMaratonu;
+                wynik.data = dataMaratonu;
+                wynik.czas = czas;
+
+                zawodnicy[indeksZawodnika].wyniki.push_back(wynik);
+            }
+        }
+
+        plik.close();
+    }
+    return zawodnicy;
+}
+
+std::vector<wynik> sortujWyniki(std::vector<wynik> wyniki) {
+    for (int i = 0; i < wyniki.size(); i++) {
+        for (int j = 0; j < wyniki.size(); j++) {
+            if (i != j) {
+                wynik temp = wyniki[i];
+                if (temp.data.compare(wyniki[j].data) < 0) {
+                    wyniki[i] = wyniki[j];
+                    wyniki[j] = temp;
+                }
+            }
+        }
+    }
+    return wyniki;
+}
+
+void zapiszZawodnikaDoPliku(zawodnik zawodnik) {
+    std::ofstream plik;
+
+    plik.open(zawodnik.nazwisko);
+    if (plik) {
+        plik << zawodnik.nazwisko << std::endl << std::endl;
+        for (int i = 0; i < zawodnik.wyniki.size(); i++) {
+            wynik temp = zawodnik.wyniki[i];
+            plik << temp.data << " " << temp.maraton << " " << temp.czas << std::endl;
+        }
+    }
+    plik.close();
+}
+
+int czyplikistnieje(string nazwapliku) {
+    std::ifstream plik;
+    plik.open(nazwapliku);
+    if (plik.good() == true) {
+        plik.close();
+        return 1;
+    }
+    if (plik.good() == false) {
+        cout << "Pliku:[" << nazwapliku << "] Nie udalo sie znalezc" << endl;
+        plik.close();
+        return 0;
+    }
+}
+
+void help() {
+    cout << "Wpisales cos nie poprawnie" << endl;
+    cout << "Prosze wprowadzic w ten sposob:( -i nazwapliku nazwapliku nazwapliku)" << endl;
+    cout << "Dobry Przyklad:(-i plik.txt tekst.txt tekst2.txt )" << endl;
+}
+
+int main(int argc, char** argv) {
+    if (argc >= 3) {
+        const std::string przelacznik("-i");
+        if (przelacznik.compare(argv[1]) == 0) { // znaleziono przelacznik '-i'
+            std::vector<std::string> pliki;
+            for (int i = 2; i < argc; i++) {
+                int m = czyplikistnieje(argv[i]);
+                if (m == 1) {
+                    pliki.push_back(argv[i]);
+                }
+            }
+
+            std::vector<zawodnik> zawodnicy = czytajWyniki(pliki);
+            for (int i = 0; i < zawodnicy.size(); i++) {
+                zawodnicy[i].wyniki = sortujWyniki(zawodnicy[i].wyniki);
+                zapiszZawodnikaDoPliku(zawodnicy[i]);
+            }
+        } else {
+            help();
+        }
+    } else {
+        help();
+    }
+    return 0;
+}
